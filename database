@@ -1,0 +1,28 @@
+CREATE DATABASE student_db;
+USE student_db;
+
+CREATE TABLE students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100),
+  phone VARCHAR(20),
+  level VARCHAR(50) DEFAULT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50),
+  password VARCHAR(255) 
+);
+
+CREATE TABLE grades (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT,
+  subject VARCHAR(100),
+  grade FLOAT,
+  coefficient INT DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);
